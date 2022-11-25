@@ -7,17 +7,11 @@ export class Component extends HTMLElement {
     
     setState(callback) {
         this.state = callback(this.state);
-        this.innerHTML = this.render()
-        .trim()
-        .replaceAll(/true|false/gi, "")
-        .replaceAll(",", "");
+        this.innerHTML = this.render();
     }
 
     connectedCallback() {
-        this.innerHTML = this.render()
-            .trim()
-            .replaceAll(/true|false/gi, "")
-            .replaceAll(",", "");
+        this.innerHTML = this.render();
         this.componentDidMount();
         this.registerEvents();
     }
@@ -37,7 +31,6 @@ export class Component extends HTMLElement {
         this.dispatchEvent(new CustomEvent(type, { bubbles: true, detail: props }));
     }
     
-    registerEvents() {}
     componentDidMount() {}
     componentWillUpdate() {}
     componentWillUnMount() {}
