@@ -16,6 +16,7 @@ export class H1 extends Component {
             <div style="display: flex;">
                 <slot name="header"></slot>
                 <slot></slot>
+                <slot></slot>
             <div>
         `;
     }

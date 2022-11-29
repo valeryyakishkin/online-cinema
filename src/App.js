@@ -1,4 +1,5 @@
 import { Component } from "./core";
+import './components/atoms/typography/Headings/H1';
 
 export class App extends Component {
     
@@ -6,6 +7,9 @@ export class App extends Component {
       return `
             <it-h1>
                 <div slot="header">Hello</div>
+                <div>Hello</div>
+                <div>Hello</div>
+                <div>Hello</div>
                 <div>Hello</div>
                 <div>Hello</div>
                 <div>Hello</div>
