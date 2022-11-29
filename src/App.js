@@ -1,22 +1,39 @@
 import { Component } from "./core";
-import './components/atoms/typography/Headings/H1';
+import './components';
+import { movieService } from "./services/MovieService";
 
 export class App extends Component {
-    
-    render() {
-      return `
-            <it-h1>
-                <div slot="header">Hello</div>
-                <div>Hello</div>
-                <div>Hello</div>
-                <div>Hello</div>
-                <div>Hello</div>
-                <div>Hello</div>
-                <div>Hello</div>
-            </it-h1>
-          `;
-  
+
+  constructor() {
+    super();
+    this.state = {
+      movies: [],
+      searchValue: '',
+      selectecCategory: '',
     }
   }
-  
-  customElements.define('my-app', App);
+
+  componentDidMount() {
+    movieService.getAllMovies()
+      .then(({ data }) => {
+        this.setState((state) => {
+          return {
+            ...state,
+            movies: data,
+          }
+        })
+      })
+  }
+
+  render() {
+    return `
+        <div id="shell">
+          <it-header></it-header>
+          <movie-card title="${this.state.movies.title}" poster="${this.state.movies.poster}" comments="${this.state.movies.comments}"></movie-card>
+        </div>
+      `;
+
+  }
+}
+
+customElements.define('my-app', App);

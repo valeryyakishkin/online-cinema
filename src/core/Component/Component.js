@@ -5,10 +5,10 @@ export class Component extends HTMLElement {
         this.props = {};
         this.isShadow = false;
     }
-    
+
     setState(callback) {
         this.state = callback(this.state);
-        if(this.isShadow) {
+        if (this.isShadow) {
             this.shadowRoot.innerHTML = this.render();
         } else {
             this.innerHTML = this.render();
@@ -16,7 +16,7 @@ export class Component extends HTMLElement {
     }
 
     connectedCallback() {
-        if(this.isShadow) {
+        if (this.isShadow) {
             this.attachShadow({ mode: 'open' });
             this.shadowRoot.innerHTML = this.render();
         } else {
@@ -39,9 +39,9 @@ export class Component extends HTMLElement {
     dispatch(type, props) {
         this.dispatchEvent(new CustomEvent(type, { bubbles: true, detail: props }));
     }
-    
-    componentDidMount() {}
-    componentWillUpdate() {}
-    componentWillUnMount() {}
-    render() {}
+
+    componentDidMount() { }
+    componentWillUpdate() { }
+    componentWillUnMount() { }
+    render() { }
 }
