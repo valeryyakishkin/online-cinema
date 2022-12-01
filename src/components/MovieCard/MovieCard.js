@@ -10,19 +10,19 @@ export class MovieCard extends Component {
     render() {
 
         return `
-        <div class="movie">
-            <div class="movie-image">
-                <span class="play"><span class="name">${this.props.title}</span></span>
-                <a href="#"><img src="../../assets/images/${this.props.poster}" alt="" /></a>
-            </div>
-            <div class="rating">
+            <div class="movie">
+                <div class="movie-image">
+                    <span class="play"><span class="name">${this.props.title}</span></span>
+                    <a href="#"><img src="../../assets/images/${this.props.poster}" alt="" /></a>
+                </div>
+                <div class="rating">
                 <p>RATING</p>
                 <div class="stars">
-                <div class="stars-in"> </div>
+                    <div class="stars-in"> </div>
                 </div>
-            <span class="comments">${this.props.comments?.length ?? 0}</span>
+                <span class="comments">${this.props.comments?.length ?? 0}</span>
             </div>
-        </div>
+
         `;
     }
 }

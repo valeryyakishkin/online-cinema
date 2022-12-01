@@ -9,7 +9,7 @@ export class App extends Component {
     this.state = {
       movies: [],
       searchValue: '',
-      selectecCategory: '',
+      selectedCategory: '',
     }
   }
 
@@ -19,7 +19,7 @@ export class App extends Component {
         this.setState((state) => {
           return {
             ...state,
-            movies: data,
+            movies: data.MOVIES,
           }
         })
       })
@@ -29,7 +29,26 @@ export class App extends Component {
     return `
         <div id="shell">
           <it-header></it-header>
-          <movie-card title="${this.state.movies.title}" poster="${this.state.movies.poster}" comments="${this.state.movies.comments}"></movie-card>
+          <div id="main">
+            <div id="content">
+              <div class="box">
+                <div class="head">
+                  <h2>LATEST TRAILERS</h2>
+                  <p class="text-right"><a href="#">See all</a></p>
+                </div>
+                ${this.state.movies
+                  .map(item => `
+                  <movie-card 
+                    title="${item.title}" 
+                    poster="${item.poster}" 
+                    comments="${item.comments}"
+                    ></movie-card>
+                  `
+                  ).join(' ')}
+                  <div class="cl">&nbsp;</div>
+              </div>
+            </div>
+          </div>
         </div>
       `;
 
