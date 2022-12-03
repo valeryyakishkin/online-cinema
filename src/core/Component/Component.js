@@ -26,7 +26,7 @@ export class Component extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this.componentWillUnMount();
+        this.componentWillUnmount();
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -42,6 +42,6 @@ export class Component extends HTMLElement {
 
     componentDidMount() { }
     componentWillUpdate() { }
-    componentWillUnMount() { }
+    componentWillUnmount() { }
     render() { }
 }

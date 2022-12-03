@@ -8,8 +8,6 @@ export class Header extends Component {
         return `
         <div id="header">
             <h1 id="logo"><a href="#">MovieHunter</a></h1>
-            
-            
             <div id="navigation">
                 <ul>
                     <li><a class="active" href="#">HOME</a></li>
