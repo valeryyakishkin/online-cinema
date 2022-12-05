@@ -1,11 +1,9 @@
-import { Component } from "../../core";
-import './header.scss';
+import { Component } from "../../../core";
+import "./header.scss";
 
 export class Header extends Component {
-
-
-    render() {
-        return `
+  render() {
+    return `
         <div id="header">
             <h1 id="logo"><a href="#">MovieHunter</a></h1>
             <div id="navigation">
@@ -46,7 +44,7 @@ export class Header extends Component {
             </div>
         </div>       
         `;
-    }
+  }
 }
 
-customElements.define('it-header', Header);
+customElements.define("it-header", Header);

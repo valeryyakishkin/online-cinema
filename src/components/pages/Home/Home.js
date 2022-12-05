@@ -1,4 +1,4 @@
-import { Component } from "../../core";
+import { Component } from "../../../core";
 
 export class HomePage extends Component {
   render() {
