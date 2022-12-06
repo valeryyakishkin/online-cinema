@@ -1,8 +1,15 @@
 import { Component } from "../../../core";
+import '../../molecules';
 
 export class SignUpPage extends Component {
   render() {
-    return `<h1>Sign Up Page</h1>`;
+    return `
+        <form class="mt-5">
+        <it-input></it-input>
+        <it-input></it-input>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+    `;
   }
 }
 

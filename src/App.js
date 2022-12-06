@@ -2,6 +2,7 @@ import * as core from "./core";
 import "./components";
 import { appRoutes } from "./constants/appRoutes";
 
+
 export class App extends core.Component {
 
   render() {
@@ -12,8 +13,8 @@ export class App extends core.Component {
               <main id="main">
                   <it-route path="${appRoutes.home}" component="home-page" title="Home Page"></it-route>
                   <it-route path="${appRoutes.admin}" component="admin-page" title="Admin Page"></it-route>
-                  <it-route path="${appRoutes.signIn}/:id" component="sign-in-page" title="Sign In Page"></it-route>
-                  <it-route path="${appRoutes.signUp}/:id" component="sign-up-page" title="Sign Up Page"></it-route>
+                  <it-route path="${appRoutes.signIn}" component="sign-in-page" title="Sign In Page"></it-route>
+                  <it-route path="${appRoutes.signUp}" component="sign-up-page" title="Sign Up Page"></it-route>
                   <it-route path="${appRoutes.movieDetails}/:id" component="movie-page" title="Movie Detail Page"></it-route>
                   <it-route path="${appRoutes.errorPage}" component="error-page" title="Not Found Page"></it-route>
                   <it-outlet></it-outlet>
