@@ -11,32 +11,22 @@ export class Header extends core.Component {
                 <ul>
                     <li>
                         <it-link to="${appRoutes.home}">
-                            <span class="active link">HOME</span>
+                            <span class="active link">Home</span>
                         </it-link>
                     </li>
                     <li>
                         <it-link to="${appRoutes.admin}">
-                            <span class="link">ADMIN</span>
+                            <span class="link">Admin</span>
                         </it-link>
                     </li>
                     <li>
                         <it-link to="${appRoutes.signIn}">
-                            <span class="link">SIGN IN</span>
+                            <span class="link">sign In</span>
                         </it-link>
                     </li>
                     <li>
                         <it-link to="${appRoutes.signUp}">
-                            <span class="link">SIGN UP</span>
-                        </it-link>
-                    </li>
-                    <li>
-                        <it-link to="${appRoutes.movieDetails}">
-                            <span class="link">MOVIE DETAILS</span>
-                        </it-link>
-                    </li>
-                    <li>
-                        <it-link to="${appRoutes.errorPage}">
-                            <span class="link">NOT FOUND</span>
+                            <span class="link">sign Up</span>
                         </it-link>
                     </li>
                 </ul>
