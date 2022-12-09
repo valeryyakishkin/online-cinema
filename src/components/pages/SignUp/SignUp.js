@@ -5,6 +5,7 @@ import { initialFieldsState } from "./initialState";
 import { FormManager } from "../../../core/FormManager/FormManager";
 import { Validator } from "../../../core/FormManager/Validator";
 import { authService } from "../../../services/Auth";
+import { appRoutes } from '../../../constants/appRoutes';
 
 export class SignUpPage extends Component {
   constructor() {
@@ -33,7 +34,8 @@ export class SignUpPage extends Component {
     this.toggleIsLoading();
     authService.signUp(data.email, data.password)
       .then((user) => {
-        console.log(user);
+        authService.user = user;
+        this.dispatch('change-route', { target: appRoutes.home });
       })
       .catch((error) => {
         this.setState((state) => {
