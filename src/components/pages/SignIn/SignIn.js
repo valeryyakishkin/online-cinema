@@ -1,7 +1,7 @@
 import { Component } from "../../../core";
 import "../../molecules";
 import "../../atoms";
-import { initialFieldsState } from "./initialState";
+import { initialFieldsState } from "../SignUp/initialState";
 import { FormManager } from "../../../core/FormManager/FormManager";
 import { Validator } from "../../../core/FormManager/Validator";
 import { authService } from "../../../services/Auth";
