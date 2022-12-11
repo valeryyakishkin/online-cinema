@@ -23,9 +23,7 @@ export class AuthService {
 
   init() {
     return new Promise((resolve, reject) => {
-      onAuthStateChanged(
-        this.auth, 
-        (user) => {
+      onAuthStateChanged(this.auth, (user) => {
           resolve(user);
         },
         (error) => {
@@ -41,6 +39,10 @@ export class AuthService {
 
   signOut() {
     return signOut(this.auth);
+  }
+
+  signIn(email, password) {
+    return signInWithEmailAndPassword(this.auth, email, password);
   }
 }
 

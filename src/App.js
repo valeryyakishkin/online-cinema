@@ -2,7 +2,6 @@ import * as core from "./core";
 import "./components";
 import { appRoutes } from "./constants/appRoutes";
 import { authService } from "./services/Auth";
-import './auth';
 
 
 export class App extends core.Component {
@@ -27,8 +26,7 @@ export class App extends core.Component {
 
   getUser() {
     this.toggleIsLoading();
-    authService
-      .init()
+    authService.init()
       .then((user) => {
         authService.user = user;
         this.setState((state) => {
