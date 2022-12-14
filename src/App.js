@@ -3,9 +3,7 @@ import "./components";
 import { appRoutes } from "./constants/appRoutes";
 import { authService } from "./services/Auth";
 
-
 export class App extends core.Component {
-
   constructor() {
     super();
     this.state = {
@@ -20,13 +18,14 @@ export class App extends core.Component {
       return {
         ...state,
         isLoading: !state.isLoading,
-      }
-    })
+      };
+    });
   }
 
   getUser() {
     this.toggleIsLoading();
-    authService.init()
+    authService
+      .init()
       .then((user) => {
         authService.user = user;
         this.setState((state) => {
@@ -51,14 +50,15 @@ export class App extends core.Component {
 
   onSignOut = () => {
     this.toggleIsLoading();
-    authService.signOut()
+    authService
+      .signOut()
       .then(() => {
         this.setState((state) => {
           return {
             ...state,
             isLogged: false,
-          }
-        })
+          };
+        });
       })
       .catch((error) => {
         this.setState((state) => {
@@ -71,15 +71,27 @@ export class App extends core.Component {
       .finally(() => {
         this.toggleIsLoading();
       });
-  }
+  };
+
+  setIsLogged = () => {
+    console.log('user-is-logged')
+    this.setState((state) => {
+      return {
+        ...state,
+        isLogged: true,
+      };
+    });
+  };
 
   componentDidMount() {
     this.getUser();
-    this.addEventListener('sign-out', this.onSignOut);
+    this.addEventListener("user-is-logged", this.setIsLogged);
+    this.addEventListener("user-is-logouted", this.onSignOut);
   }
 
   componentWillUnmount() {
-    this.removeEventListener('sign-out', this.onSignOut);
+    this.removeEventListener("user-is-logged", this.setIsLogged);
+    this.removeEventListener("user-is-logouted", this.onSignOut);
   }
 
   render() {
@@ -94,7 +106,7 @@ export class App extends core.Component {
                 <it-route path="${appRoutes.admin}" component="admin-page" title="Admin Page"></it-route>
                 <it-route path="${appRoutes.signIn}" component="sign-in-page" title="SignIn Page"></it-route>
                 <it-route path="${appRoutes.signUp}" component="sign-up-page" title="SignUp Page"></it-route>
-                <it-route path="${appRoutes.movieDetails}/:id" component="movie-details-page" title="Movie Details Page"></it-route>
+                <it-route path="${appRoutes.movies}/:id" component="movie-details-page" title="Movie Details Page"></it-route>
                 <it-route path="${appRoutes.errorPage}" component="error-page" title="Not Found Page"></it-route>
                 <it-outlet></it-outlet>
               </main>

@@ -3,27 +3,26 @@ import * as core from "../../../core";
 import "./header.scss";
 
 export class Header extends core.Component {
-  
-    static get observedAttributes() {
-        return ['is-logged'];
-    }
+  static get observedAttributes() {
+    return ["is-logged"];
+  }
 
-    onSignOut = (evt) => {
-        evt.preventDefault();
-        if (evt.target.closest('.sign-out-link')) {
-            this.dispatch('sign-out');
-        }
+  onSignOut = (evt) => {
+    evt.preventDefault();
+    if (evt.target.closest(".sign-out-link")) {
+      this.dispatch("user-is-logouted");
     }
+  };
 
-    componentDidMount() {
-        this.addEventListener('click', this.onSignOut);
-    }
-    
-    componentWillUnmount() {
-        this.removeEventListener('click', this.onSignOut);
-    }
+  componentDidMount() {
+    this.addEventListener("click", this.onSignOut);
+  }
 
-    render() {
+  componentWillUnmount() {
+    this.removeEventListener("click", this.onSignOut);
+  }
+
+  render() {
     return `
         <div id="header">
             <h1 id="logo"><a href="#">MovieHunter</a></h1>
@@ -39,25 +38,27 @@ export class Header extends core.Component {
                             <span class="link">Admin</span>
                         </it-link>
                     </li>
-                    <li>
-                        <it-link to="${appRoutes.signIn}">
-                            <span class="link">sign In</span>
-                        </it-link>
-                    </li>
-                    <li>
-                        <it-link to="${appRoutes.signUp}">
-                            <span class="link">sign Up</span>
-                        </it-link>
-                    </li>
-                    ${JSON.parse(this.props['is-logged']) 
-                    ? ` 
+                    ${
+                      JSON.parse(this.props["is-logged"])
+                        ? ` 
                         <li>
                             <a href="#" class="sign-out-link">
                                 <span class="link">sign Out</span>
                             </a>
                         </li>
-                    ` 
-                    : ""
+                    `
+                        : `
+                        <li>
+                            <it-link to="${appRoutes.signIn}">
+                                <span class="link">sign In</span>
+                            </it-link>
+                        </li>
+                        <li>
+                            <it-link to="${appRoutes.signUp}">
+                                <span class="link">sign Up</span>
+                            </it-link>
+                        </li>
+                    `
                     }
                 </ul>
             </div>

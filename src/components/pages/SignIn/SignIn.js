@@ -5,7 +5,7 @@ import { initialFieldsState } from "./initialState";
 import { FormManager } from "../../../core/FormManager/FormManager";
 import { Validator } from "../../../core/FormManager/Validator";
 import { authService } from "../../../services/Auth";
-import { appRoutes } from '../../../constants/appRoutes';
+import { appRoutes } from "../../../constants/appRoutes";
 
 export class SignInPage extends Component {
   constructor() {
@@ -26,28 +26,30 @@ export class SignInPage extends Component {
       return {
         ...state,
         isLoading: !state.isLoading,
-      }
-    })
-  }
+      };
+    });
+  };
 
   signIn = (data) => {
     this.toggleIsLoading();
-    authService.signIn(data.email, data.password)
+    authService
+      .signIn(data.email, data.password)
       .then((user) => {
         authService.user = user;
-        this.dispatch('change-route', { target: appRoutes.home });
+        this.dispatch("change-route", { target: appRoutes.home });
+        this.dispatch("user-is-logged");
       })
       .catch((error) => {
         this.setState((state) => {
           return {
             ...state,
             error: error.message,
-          }
-        })
+          };
+        });
       })
       .finally(() => {
         this.toggleIsLoading();
-      })
+      });
   };
 
   validateForm = (evt) => {
@@ -63,7 +65,6 @@ export class SignInPage extends Component {
   };
 
   validate = (evt) => {
-    console.log(evt.detail);
     this.setState((state) => {
       return {
         ...state,
