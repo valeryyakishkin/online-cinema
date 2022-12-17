@@ -1,6 +1,6 @@
-import { Component } from "../../../core";
+import { Component, eventBus } from "../../../core";
 import { authService } from "../../../services/Auth";
-import { appRoutes } from "../../../constants/appRoutes";
+import { appRoutes, appEvents } from "../../../constants";
 import { FormManager } from "../../../core/FormManager/FormManager";
 import { storageService } from "../../../services/Storage";
 import { databaseService } from "../../../services/Database";
@@ -36,12 +36,7 @@ export class AdminPage extends Component {
         });
       })
       .catch((error) => {
-        this.setState((state) => {
-          return {
-            ...state,
-            error: error.message,
-          };
-        });
+        console.log(error);
       })
       .finally(() => {
         this.toggleIsLoading();
@@ -51,11 +46,6 @@ export class AdminPage extends Component {
   componentDidMount() {
     this.form.init(this.querySelector(".send-data"), {});
     this.addEventListener("submit", this.form.handleSubmit(this.createMovie));
-    if (!authService.user) {
-      this.dispatch("change-route", {
-        target: appRoutes[this.props.path ?? "signUp"],
-      });
-    }
   }
 
   render() {
@@ -72,7 +62,7 @@ export class AdminPage extends Component {
               </div>
               <div class="mb-3">
                 <label class="form-label">Movie rating</label>
-                <input class="form-range" type="range" name="rating" min="0" max="5" step="0.5">
+                <input class="form-range" type="range" name="rating" min="0" max="5" step="1">
               </div>
               <div class="mb-3">
                 <label class="form-label">Upload a poster</label>

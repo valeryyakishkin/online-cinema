@@ -1,11 +1,11 @@
-import { Component } from "../../../core";
+import { Component, eventBus } from "../../../core";
 import "../../molecules";
 import "../../atoms";
 import { initialFieldsState } from "./initialState";
 import { FormManager } from "../../../core/FormManager/FormManager";
 import { Validator } from "../../../core/FormManager/Validator";
 import { authService } from "../../../services/Auth";
-import { appRoutes } from "../../../constants/appRoutes";
+import { appRoutes, appEvents } from "../../../constants";
 
 export class SignInPage extends Component {
   constructor() {
@@ -36,8 +36,8 @@ export class SignInPage extends Component {
       .signIn(data.email, data.password)
       .then((user) => {
         authService.user = user;
-        this.dispatch("change-route", { target: appRoutes.home });
-        this.dispatch("user-is-logged");
+        eventBus.emit(appEvents.changeRoute, { target: appRoutes.home });
+        eventBus.emit(appEvents.userAuthorized);
       })
       .catch((error) => {
         this.setState((state) => {
@@ -77,8 +77,8 @@ export class SignInPage extends Component {
   };
 
   componentDidMount() {
+    eventBus.on(appEvents.validateControls, this.validate);
     this.addEventListener("click", this.validateForm);
-    this.addEventListener("validate-controls", this.validate);
     this.addEventListener("submit", this.form.handleSubmit(this.signIn));
   }
 
@@ -89,30 +89,33 @@ export class SignInPage extends Component {
 
     return `
       <it-preloader is-loading="${this.state.isLoading}">
-        <h1>Sign In</h1>
-          <form class="mt-5 registration-form">
-            <div class="invalid-feedback text-center mb-3 d-block">${this.state.error}</div>
-            <it-input
-              type="email"
-              label="Email"
-              control-name="email"
-              value="${email.value}"
-              is-valid="${email.isValid}"
-              is-touched="${email.isTouched}"
-              error-message="${email.errors?.message}"
-            ></it-input>
-            
-            <it-input
-              type="password"
-              label="Password"
-              control-name="password"
-              value="${password.value}"
-              is-valid="${password.isValid}"
-              is-touched="${password.isTouched}"
-              error-message="${password.errors?.message}"
-            ></it-input>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </form>
+        <div class="mt-3">
+          <h1>Sign In</h1>
+        </div>
+        <form class="mt-5 registration-form">
+          <div class="invalid-feedback text-center mb-3 d-block">${this.state.error}</div>
+          <it-input
+            type="email"
+            label="Email"
+            control-name="email"
+            value="${email.value}"
+            is-valid="${email.isValid}"
+            is-touched="${email.isTouched}"
+            error-message="${email.errors?.message}"
+          ></it-input>
+          
+          <it-input
+            type="password"
+            label="Password"
+            control-name="password"
+            class-name="first-pass"
+            value="${password.value}"
+            is-valid="${password.isValid}"
+            is-touched="${password.isTouched}"
+            error-message="${password.errors?.message}"
+          ></it-input>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
       </it-preloader>
     `;
   }

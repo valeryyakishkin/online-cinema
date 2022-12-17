@@ -1,14 +1,11 @@
 import { appRoutes } from "../../../constants/appRoutes";
 import * as core from "../../../core";
 import "./movie-card.scss";
+import "../../molecules";
 
 export class MovieCard extends core.Component {
   static get observedAttributes() {
     return ["title", "poster", "description", "id", "rating", "genre"];
-  }
-
-  componentDidMount() {
-    this.classList.add('movie')
   }
 
   render() {
@@ -20,11 +17,7 @@ export class MovieCard extends core.Component {
                   <img src="${this.props.poster}" alt="${this.props.title}" />
                 </it-link>
               </div>
-              <div class="rating">
-              <p>RATING</p>
-              <div class="stars">
-                <div class="stars-in"> </div>
-              </div>
+              <it-rating count="${this.props.rating}"></it-rating>
             </div>
 
         `;

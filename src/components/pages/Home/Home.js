@@ -1,6 +1,7 @@
 import { Component } from "../../../core";
 import { databaseService } from "../../../services/Database";
 import "../../organisms";
+import "./home.scss";
 
 export class HomePage extends Component {
   constructor() {
@@ -51,6 +52,7 @@ export class HomePage extends Component {
               <h2>LATEST TRAILERS</h2>
               <p class="text-right"><a href="#">See all</a></p>
             </div>
+            <div class="home-container">
               ${
                 this.state.movies.length > 0
                   ? `
@@ -69,13 +71,13 @@ export class HomePage extends Component {
                     `;
                       }
                     )
-                    .join(' ')}
+                    .join(" ")}
                 `
                   : `<h2>Movies is not available</h2>`
               }
+            </div>
           </div>
         </div>
-        <div class="cl">&nbsp;</div>
       </it-preloader>
     `;
   }
