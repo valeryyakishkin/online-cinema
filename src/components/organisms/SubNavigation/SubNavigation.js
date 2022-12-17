@@ -1,15 +1,30 @@
+import { appGenres } from "../../../constants";
 import { Component } from "../../../core";
 import "./subNavigation.scss";
 
 class SubNavigation extends Component {
+  
+  constructor() {
+    super();
+    this.state = {
+      activeGenre: appGenres[0].value,
+    }
+  }
+  
   render() {
     return `
       <div class="sub-navigation">
         <ul>
-            <li><a href="#">SHOW ALL</a></li>
-            <li><a href="#">LATEST TRAILERS</a></li>
-            <li><a href="#">TOP RATED</a></li>
-            <li><a href="#">MOST COMMENTED</a></li>
+          ${appGenres.map((item) => {
+            const isActive = this.state.activeGenre === item.value ? 'active' : '';
+            return `
+              <li>
+                <a href="#" class="${isActive}" data-genre="${item.value}">
+                  ${item.label}
+                </a>
+              </li>
+            `;
+          }).join(' ')}
         </ul>
 
         <div class="search">
